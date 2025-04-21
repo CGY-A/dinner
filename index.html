@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>오늘의 회식 장소</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Gmarket+Sans:wght@700&display=swap');
+
+    body {
+      font-family: 'Gmarket Sans', sans-serif;
+    }
+
+    .fade-in {
+      animation: fadeIn 1s ease-in-out;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body class="bg-gradient-to-r from-yellow-100 to-pink-100 min-h-screen flex items-center justify-center">
+  <div class="bg-white shadow-2xl rounded-3xl p-10 max-w-md text-center">
+    <h1 class="text-3xl font-bold text-gray-800 mb-6">오늘의 회식 장소는?</h1>
+    <button onclick="pickRestaurant()" class="bg-pink-500 hover:bg-pink-600 text-white font-bold py-3 px-6 rounded-full transition-all">
+      랜덤 선택 🎲
+    </button>
+    <div id="result" class="mt-8 text-2xl font-extrabold text-gray-700"></div>
+  </div>
+
+  <script>
+    const restaurants = ['🍖 두껍삼 (삼겹살)', '🦐 다미선 (해물)', '🥡 삼성각 (중식)'];
+
+    function pickRestaurant() {
+      const random = restaurants[Math.floor(Math.random() * restaurants.length)];
+      const resultDiv = document.getElementById('result');
+      resultDiv.textContent = random;
+      resultDiv.classList.remove('fade-in');
+      void resultDiv.offsetWidth; // trigger reflow
+      resultDiv.classList.add('fade-in');
+    }
+  </script>
+</body>
+</html>
